@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/ClassList.qml</file>
+        <file>qml/main.js</file>
+        <file>images/Death_knight_crest.png</file>
+        <file>qml/template/ClassModelTemplate.qml</file>
+        <file>qml/delegate/ClassListItemDelegate.qml</file>
+        <file>images/dk_blood.png</file>
+        <file>qml/delegate/ClassListSectionDelegate.qml</file>
+        <file>images/dk_frost.png</file>
+        <file>images/dk_unholy.png</file>
+        <file>qml/ClassList.js</file>
+    </qresource>
+</RCC>
