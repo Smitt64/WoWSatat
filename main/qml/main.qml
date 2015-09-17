@@ -1,10 +1,13 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
+import WowStat 1.0
 import "main.js" as MainJs
 
 Window {
     id: mainwindow
     visible: true
+    width: 800
+    height: 600
 
     Loader {
         id: mainloader
@@ -16,7 +19,10 @@ Window {
     }
 
     Component.onCompleted: {
-        MainJs.loadClassListComponent();
+        var stat = MainJs.initApplication()
+        if (stat === 0) {
+            MainJs.loadClassListComponent();
+        }
     }
 }
 
