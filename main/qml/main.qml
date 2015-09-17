@@ -9,6 +9,13 @@ Window {
     width: 800
     height: 600
 
+    Image {
+        fillMode: Image.Tile
+        source: "../images/ui/Tileable-Parchment.png"
+        anchors.fill: parent
+
+    }
+
     Loader {
         id: mainloader
         anchors.fill: parent

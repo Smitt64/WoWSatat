@@ -11,5 +11,11 @@
         <file>images/dk_frost.png</file>
         <file>images/dk_unholy.png</file>
         <file>qml/ClassList.js</file>
+        <file>images/ui/WorldStateFinalScoreFrame-TopBackground.png</file>
+        <file>images/ui/Tileable-Parchment.png</file>
+        <file>images/ui/UI-AuctionPost-Endcaps.png</file>
+        <file>images/ui/UI-AuctionPost-Middle.png</file>
+        <file>images/ui/UI-AuctionPost-Background.png</file>
+        <file>qml/delegate/ClassListSelectDelegate.qml</file>
     </qresource>
 </RCC>

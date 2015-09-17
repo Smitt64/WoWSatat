@@ -20,12 +20,15 @@ ListView {
         id: delegate
         specimage: ("qrc:/" + specicon)
         specname: spec
+
+        width: list.width
     }
 
     section.delegate: ClassListSectionDelegate {
         id: sectiondelegate
         specimage: ("qrc:/" + findClassImage(section))
         specname: section
+        width: list.width
     }
     section.criteria: ViewSection.FullString
     section.property: "classname"

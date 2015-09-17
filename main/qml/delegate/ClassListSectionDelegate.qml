@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-Rectangle {
+Image {
     id: itemDelegate
     property string specimage: ""
     property string specname: ""
@@ -8,9 +8,9 @@ Rectangle {
     Component.onCompleted: showAnim.start();
     transform:
         Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//     <--- I like this one more!
-    width: parent.width
-    height: 50
-    color: "#56525b"
+    fillMode: Image.TileHorizontally
+    source: "../../images/ui/WorldStateFinalScoreFrame-TopBackground.png"
+
     SequentialAnimation {
         id: showAnim
         running: false
@@ -31,8 +31,10 @@ Rectangle {
 
     Text {
         id: text1
-        text: specname
-        style: Text.Normal
+        color: "#cec8c8"
+        text: "Text"
+        styleColor: "#79786f"
+        style: Text.Raised
         textFormat: Text.PlainText
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft

@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-Rectangle {
+Image {
     id: itemDelegate
     property string specimage: ""
     property string specname: ""
@@ -10,7 +10,9 @@ Rectangle {
         Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//     <--- I like this one more!
     width: parent.width
     height: 50
-    color: index % 2 === 0 ? "#EEE" : "#DDD"
+    fillMode: Image.TileHorizontally
+    source: "../../images/ui/UI-AuctionPost-Background.png"
+
     SequentialAnimation {
         id: showAnim
         running: false
@@ -21,12 +23,37 @@ Rectangle {
         id: image
         width: image.height
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 2
+        anchors.bottomMargin: 4
         anchors.top: parent.top
-        anchors.topMargin: 2
+        anchors.topMargin: 4
         anchors.left: parent.left
-        anchors.leftMargin: 2
+        anchors.leftMargin: 4
         source: specimage
+    }
+
+    Text {
+        id: text1
+        color: "#7d7d90"
+        text: specname
+        style: Text.Normal
+        textFormat: Text.PlainText
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignLeft
+        anchors.top: parent.top
+        anchors.topMargin: 4
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 4
+        anchors.right: parent.right
+        anchors.rightMargin: 2
+        anchors.left: image.right
+        anchors.leftMargin: 4
+        font.pixelSize: 17
+    }
+
+    ClassListSelectDelegate {
+        id: selection
+        anchors.fill: parent
+        opacity: 0.0
     }
 
     MouseArea {
@@ -41,30 +68,13 @@ Rectangle {
         onExited: itemDelegate.state = ""
     }
 
-    Text {
-        id: text1
-        text: specname
-        style: Text.Normal
-        textFormat: Text.PlainText
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignLeft
-        anchors.top: parent.top
-        anchors.topMargin: 2
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 2
-        anchors.right: parent.right
-        anchors.rightMargin: 2
-        anchors.left: image.right
-        anchors.leftMargin: 2
-        font.pixelSize: 17
-    }
     states: [
         State {
             name: "hihglight"
 
             PropertyChanges {
-                target: itemDelegate
-                color: "#313545"
+                target: selection
+                opacity: 1.0
             }
         }
     ]
@@ -73,12 +83,18 @@ Rectangle {
         Transition {
             from: ""
             to: "hihglight"
-            ColorAnimation { target: itemDelegate; duration: 200; }
+            PropertyAnimation {
+                properties: "opacity";
+            }
+
+            //ColorAnimation { target: itemDelegate; duration: 200; }
         },
         Transition {
             from: "hihglight"
             to: ""
-            ColorAnimation { target: itemDelegate; duration: 200; }
+            PropertyAnimation {
+                properties: "opacity";
+            }
         }
     ]
 
