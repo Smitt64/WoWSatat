@@ -11,7 +11,7 @@ Window {
 
     Image {
         fillMode: Image.Tile
-        source: "../images/ui/Tileable-Parchment.png"
+        source: "../images/ui/UI-AuctionPost-Background.png"
         anchors.fill: parent
 
     }

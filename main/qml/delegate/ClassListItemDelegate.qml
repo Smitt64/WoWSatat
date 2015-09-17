@@ -1,6 +1,7 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 
-Image {
+Item {
     id: itemDelegate
     property string specimage: ""
     property string specname: ""
@@ -10,8 +11,17 @@ Image {
         Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//     <--- I like this one more!
     width: parent.width
     height: 50
-    fillMode: Image.TileHorizontally
-    source: "../../images/ui/UI-AuctionPost-Background.png"
+
+    Image {
+        id: back
+        anchors.rightMargin: 2
+        anchors.leftMargin: 2
+        anchors.bottomMargin: 2
+        anchors.topMargin: 2
+        anchors.fill: parent
+        fillMode: Image.TileHorizontally
+        source: "../../images/ui/Tileable-Parchment.png"
+    }
 
     SequentialAnimation {
         id: showAnim
@@ -33,7 +43,7 @@ Image {
 
     Text {
         id: text1
-        color: "#7d7d90"
+        color: "#131315"
         text: specname
         style: Text.Normal
         textFormat: Text.PlainText
