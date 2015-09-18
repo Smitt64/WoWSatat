@@ -4,6 +4,8 @@ Image {
     id: button
     width: 32
     height: 32
+
+    signal triggered
     states: [
         State {
             name: "pressed"
@@ -33,6 +35,10 @@ Image {
 
         onReleased: {
             button.state = ""
+        }
+
+        onClicked: {
+            button.triggered()
         }
     }
 

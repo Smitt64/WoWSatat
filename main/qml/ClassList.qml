@@ -7,14 +7,6 @@ import "ClassList.js" as ClassListJs
 FixedSizeWindow {
     id:classwindow
 
-    CloseButton {
-        id: closebutton
-        anchors.rightMargin: -4
-        anchors.topMargin: 8
-        anchors.top: parent.top
-        anchors.right: parent.right
-    }
-
     ListView {
         id: list
         clip: true
@@ -80,9 +72,10 @@ FixedSizeWindow {
         height: 14
         color: "#f4f4f4"
         text: qsTr("Select specialization")
+        anchors.rightMargin: 30
         anchors.leftMargin: 80
         anchors.left: parent.left
-        anchors.right: closebutton.left
+        anchors.right: parent.right
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         anchors.top: parent.top

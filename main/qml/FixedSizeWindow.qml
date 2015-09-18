@@ -7,6 +7,21 @@ Item {
     clip: true
 
     property string iconname: ""
+    signal close()
+
+    CloseButton {
+        id: closebutton
+        z: 1
+        anchors.rightMargin: -4
+        anchors.topMargin: 8
+        anchors.top: parent.top
+        anchors.right: parent.right
+
+        onTriggered: {
+            console.log("onClicked")
+            item1.close()
+        }
+    }
 
     Image {
         id: icon

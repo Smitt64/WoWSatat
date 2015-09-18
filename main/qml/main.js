@@ -11,9 +11,15 @@ function initApplication() {
 }
 
 function loadClassListComponent() {
-    ClassList = mainloader.setSource("ClassList.qml", {"anchors.fill" : mainwindow});
-
+    mainloader.setSource("ClassList.qml", {"anchors.fill" : mainwindow});
+    ClassList = mainloader.item
+    ClassList.close.connect(closeApp);
     /*mainwindow.width  = 240
     mainwindow.height = 320*/
     mainwindow.show()
+}
+
+function closeApp() {
+    console.log("dffgh")
+    Qt.quit()
 }
