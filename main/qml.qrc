@@ -17,5 +17,19 @@
         <file>images/ui/UI-AuctionPost-Middle.png</file>
         <file>images/ui/UI-AuctionPost-Background.png</file>
         <file>qml/delegate/ClassListSelectDelegate.qml</file>
+        <file>images/ui/window/UI-TaxiFrame-BotLeft.png</file>
+        <file>images/ui/window/UI-TaxiFrame-BotRight.png</file>
+        <file>images/ui/window/UI-TaxiFrame-TopLeft.png</file>
+        <file>images/ui/window/UI-TaxiFrame-TopRight.png</file>
+        <file>qml/FixedSizeWindow.qml</file>
+        <file>images/ui/GroupHeader.png</file>
+        <file>images/ui/ClassListBg.png</file>
+        <file>images/ui/ClassListSel.png</file>
+        <file>fonts/defaultwowfont.ttf</file>
+        <file>qml/Global.js</file>
+        <file>images/ui/buttons/UI-Panel-MinimizeButton-Disabled.png</file>
+        <file>images/ui/buttons/UI-Panel-MinimizeButton-Down.png</file>
+        <file>images/ui/buttons/UI-Panel-MinimizeButton-Up.png</file>
+        <file>qml/CloseButton.qml</file>
     </qresource>
 </RCC>

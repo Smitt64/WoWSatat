@@ -1,16 +1,17 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
+import "../Global.js" as Globals
 
 Item {
     id: itemDelegate
     property string specimage: ""
-    property string specname: ""
+    property string specname: "test"
 
     Component.onCompleted: showAnim.start();
     transform:
         Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//     <--- I like this one more!
     width: parent.width
-    height: 50
+    height: 55
 
     Image {
         id: back
@@ -19,8 +20,8 @@ Item {
         anchors.bottomMargin: 2
         anchors.topMargin: 2
         anchors.fill: parent
-        fillMode: Image.TileHorizontally
-        source: "../../images/ui/Tileable-Parchment.png"
+        fillMode: Image.Stretch
+        source: "../../images/ui/ClassListBg.png"
     }
 
     SequentialAnimation {
@@ -33,31 +34,33 @@ Item {
         id: image
         width: image.height
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 4
+        anchors.bottomMargin: 6
         anchors.top: parent.top
-        anchors.topMargin: 4
+        anchors.topMargin: 6
         anchors.left: parent.left
-        anchors.leftMargin: 4
+        anchors.leftMargin: 9
         source: specimage
     }
 
     Text {
         id: text1
-        color: "#131315"
+        color: "#9898a7"
         text: specname
         style: Text.Normal
         textFormat: Text.PlainText
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
         anchors.top: parent.top
-        anchors.topMargin: 4
+        anchors.topMargin: 6
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 4
+        anchors.bottomMargin: 6
         anchors.right: parent.right
-        anchors.rightMargin: 2
+        anchors.rightMargin: 4
         anchors.left: image.right
-        anchors.leftMargin: 4
+        anchors.leftMargin: 15
         font.pixelSize: 17
+
+        font.family: "Emblem"
     }
 
     ClassListSelectDelegate {

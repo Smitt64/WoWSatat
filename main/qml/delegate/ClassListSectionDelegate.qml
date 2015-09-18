@@ -3,13 +3,15 @@ import QtQuick 2.0
 Image {
     id: itemDelegate
     property string specimage: ""
-    property string specname: ""
+    property string specname: "test"
+    width: 200
+    height: 50
 
     Component.onCompleted: showAnim.start();
     transform:
         Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//     <--- I like this one more!
-    fillMode: Image.TileHorizontally
-    source: "../../images/ui/WorldStateFinalScoreFrame-TopBackground.png"
+    fillMode: Image.Stretch
+    source: "../../images/ui/GroupHeader.png"
 
     SequentialAnimation {
         id: showAnim
@@ -32,7 +34,7 @@ Image {
     Text {
         id: text1
         color: "#cec8c8"
-        text: "Text"
+        text: specname
         styleColor: "#79786f"
         style: Text.Raised
         textFormat: Text.PlainText

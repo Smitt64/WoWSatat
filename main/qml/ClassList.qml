@@ -4,60 +4,89 @@ import "delegate"
 import "template"
 import "ClassList.js" as ClassListJs
 
-ListView {
-    id: list
-    cacheBuffer: 10
+FixedSizeWindow {
+    id:classwindow
 
-    ClassModelTemplate {
-        id: model
+    CloseButton {
+        id: closebutton
+        anchors.rightMargin: -4
+        anchors.topMargin: 8
+        anchors.top: parent.top
+        anchors.right: parent.right
     }
 
-    model: ListModel {
-        id: listmodel
-    }
+    ListView {
+        id: list
+        clip: true
+        anchors.bottomMargin: 16
+        anchors.rightMargin: 15
+        anchors.leftMargin: 24
+        anchors.topMargin: 78
+        anchors.fill: parent
+        cacheBuffer: 10
 
-    delegate: ClassListItemDelegate {
-        id: delegate
-        specimage: ("qrc:/" + specicon)
-        specname: spec
-
-        width: list.width
-    }
-
-    section.delegate: ClassListSectionDelegate {
-        id: sectiondelegate
-        specimage: ("qrc:/" + findClassImage(section))
-        specname: section
-        width: list.width
-    }
-    section.criteria: ViewSection.FullString
-    section.property: "classname"
-
-    /*add: Transition {
-        RotationAnimation { target: delegate; from: 180; to: 0; duration: 1000; easing.type: Easing.OutBack; property: "angle" }
-    }*/
-
-    Component.onCompleted: {
-        ClassListJs.addToModel()
-        addtimer.start()
-    }
-
-    Timer {
-        id: addtimer
-        repeat: true
-        interval: 50
-
-        onTriggered: ClassListJs.addToModel()
-    }
-
-    function findClassImage(str) {
-        for (var i = 0; i < list.model.count; i++) {
-            if (list.model.get(i).classname === str) {
-                return list.model.get(i).nameicon;
-            }
+        ClassModelTemplate {
+            id: model
         }
 
-        return "";
+        model: ListModel {
+            id: listmodel
+        }
+
+        delegate: ClassListItemDelegate {
+            id: delegate
+            specimage: ("qrc:/" + specicon)
+            specname: spec
+
+            width: list.width
+        }
+
+        section.delegate: ClassListSectionDelegate {
+            id: sectiondelegate
+            specimage: ("qrc:/" + list.findClassImage(section))
+            specname: section
+            width: list.width
+            clip: true
+        }
+        section.criteria: ViewSection.FullString
+        section.property: "classname"
+
+        Component.onCompleted: {
+            ClassListJs.addToModel()
+            addtimer.start()
+        }
+
+        Timer {
+            id: addtimer
+            repeat: true
+            interval: 50
+
+            onTriggered: ClassListJs.addToModel()
+        }
+
+        function findClassImage(str) {
+            for (var i = 0; i < list.model.count; i++) {
+                if (list.model.get(i).classname === str) {
+                    return list.model.get(i).nameicon;
+                }
+            }
+
+            return "";
+        }
+    }
+
+    Text {
+        id: text1
+        height: 14
+        color: "#f4f4f4"
+        text: qsTr("Select specialization")
+        anchors.leftMargin: 80
+        anchors.left: parent.left
+        anchors.right: closebutton.left
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        anchors.top: parent.top
+        anchors.topMargin: 17
+        font.pixelSize: 12
     }
 }
-
