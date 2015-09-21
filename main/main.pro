@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     qmlapplicationengine.cpp \
     wowstatobject.cpp \
     dbfiles/dbcfileloader.cpp \
-    dbfiles/dbcstructure.cpp
+    dbfiles/dbcstructure.cpp \
+    dbfiles/spells.cpp
 RESOURCES += qml.qrc \
     images.qrc
 
@@ -30,5 +31,6 @@ HEADERS += \
     defines.h \
     dbfiles/dbcstorage.h \
     dbfiles/dbcstructure.h \
-    dbfiles/dbcfmt.h
+    dbfiles/dbcfmt.h \
+    dbfiles/spells.h
 

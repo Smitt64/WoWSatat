@@ -1,6 +1,8 @@
 #ifndef DEFINES
 #define DEFINES
 
+typedef char const* const* DBCString;
+
 enum FieldFormat
 {
     FT_NA = 'x',                                            // ignore/ default, 4 byte size, in Source String means field is ignored, in Dest String means field is filled with default value

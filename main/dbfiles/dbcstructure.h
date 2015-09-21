@@ -2,17 +2,29 @@
 #define DBCSTRUCTURE
 
 #include "dbcstorage.h"
+#include "spells.h"
 
-struct SpellAuraOptionsEntry
-{
-    //uint32    Id;                                           // 0        m_ID
-    quint32    StackAmount;                                  // 51       m_cumulativeAura
-    quint32    procChance;                                   // 38       m_procChance
-    quint32    procCharges;                                  // 39       m_procCharges
-    quint32    procFlags;                                    // 37       m_procTypeMask
-};
-
-extern DBCStorage<SpellAuraOptionsEntry> sSpellAuraOptionsEntry;
+/*extern DBCStorage <SpellRadiusEntry>             sSpellRadiusStore;
+extern DBCStorage <SpellRangeEntry>              sSpellRangeStore;
+extern DBCStorage <SpellRuneCostEntry>           sSpellRuneCostStore;
+extern DBCStorage <SpellShapeshiftFormEntry>     sSpellShapeshiftFormStore;*/
+extern DBCStorage <SpellEntry>                    sSpellStore;
+extern DBCStorage <SpellAuraOptionsEntry>         sSpellAuraOptionsStore;
+extern DBCStorage <SpellAuraRestrictionsEntry>    sSpellAuraRestrictionsStore;
+extern DBCStorage <SpellCastingRequirementsEntry> sSpellCastingRequirementsStore;
+extern DBCStorage <SpellCategoriesEntry>          sSpellCategoriesStore;
+extern DBCStorage <SpellClassOptionsEntry>        sSpellClassOptionsStore;
+extern DBCStorage <SpellCooldownsEntry>           sSpellCooldownsStore;
+extern DBCStorage <SpellEffectEntry>              sSpellEffectStore;
+extern DBCStorage <SpellEquippedItemsEntry>       sSpellEquippedItemsStore;
+extern DBCStorage <SpellInterruptsEntry>          sSpellInterruptsStore;
+extern DBCStorage <SpellLevelsEntry>              sSpellLevelsStore;
+extern DBCStorage <SpellPowerEntry>               sSpellPowerStore;
+extern DBCStorage <SpellReagentsEntry>            sSpellReagentsStore;
+extern DBCStorage <SpellScalingEntry>             sSpellScalingStore;
+extern DBCStorage <SpellShapeshiftEntry>          sSpellShapeshiftStore;
+extern DBCStorage <SpellTargetRestrictionsEntry>  sSpellTargetRestrictionsStore;
+extern DBCStorage <SpellTotemsEntry>              sSpellTotemsStore;
 
 #endif // DBCSTRUCTURE
 
