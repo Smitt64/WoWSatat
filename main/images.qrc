@@ -21,5 +21,9 @@
         <file>images/ui/buttons/UI-Panel-MinimizeButton-Disabled.png</file>
         <file>images/ui/buttons/UI-Panel-MinimizeButton-Down.png</file>
         <file>images/ui/buttons/UI-Panel-MinimizeButton-Up.png</file>
+        <file>images/ui/DialogFrame-Corners.png</file>
+        <file>images/ui/UI-Character-StatBackground.png</file>
+        <file>images/ui/UI-DialogBox-Background.png</file>
+        <file>images/ui/UI-DialogBox-Background-Dark.png</file>
     </qresource>
 </RCC>

@@ -3,9 +3,11 @@
 
 #include <QtCore>
 #include "defines.h"
+#include "dbcstorage.h"
 #include <cassert>
 
 #define EndianConvert(x)
+extern LocaleNameStr const fullLocaleNameList[];
 
 class DBCFileLoader
 {
@@ -77,5 +79,8 @@ private:
     unsigned char* data;
     unsigned char* stringTable;
 };
+
+bool ReadDBCBuildFileText(const std::string& dbc_path, char const* localeName, std::string& text);
+quint32 ReadDBCBuild(const std::string& dbc_path, LocaleNameStr const*&localeNameStr);
 
 #endif // DBCFILELOADER_H

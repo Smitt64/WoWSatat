@@ -2,6 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+LocaleNameStr const fullLocaleNameList[] =
+{
+    { "enUS", LOCALE_enUS },
+    { "enGB", LOCALE_enUS },
+    { "koKR", LOCALE_koKR },
+    { "frFR", LOCALE_frFR },
+    { "deDE", LOCALE_deDE },
+    { "zhCN", LOCALE_zhCN },
+    { "zhTW", LOCALE_zhTW },
+    { "esES", LOCALE_esES },
+    { "esMX", LOCALE_esMX },
+    { "ruRU", LOCALE_ruRU },
+    { NULL,   LOCALE_enUS }
+};
+
 DBCFileLoader::DBCFileLoader()
 {
     data = NULL;
@@ -347,3 +362,55 @@ char* DBCFileLoader::AutoProduceStrings(const char* format, char* dataTable, Loc
 }
 
 
+bool ReadDBCBuildFileText(const std::string& dbc_path, char const* localeName, std::string& text)
+{
+    std::string filename  = dbc_path + "component.wow-" + localeName + ".txt";
+
+    if(FILE* file = fopen(filename.c_str(),"rb"))
+    {
+        char buf[100];
+        fread(buf,1,100-1,file);
+        fclose(file);
+
+        text = &buf[0];
+        return true;
+    }
+    else
+        return false;
+}
+
+quint32 ReadDBCBuild(const std::string& dbc_path, LocaleNameStr const*&localeNameStr)
+{
+    std::string text;
+
+    if (!localeNameStr)
+    {
+        for(LocaleNameStr const* itr = &fullLocaleNameList[0]; itr->name; ++itr)
+        {
+            if (ReadDBCBuildFileText(dbc_path,itr->name,text))
+            {
+                localeNameStr = itr;
+                break;
+            }
+        }
+    }
+    else
+        ReadDBCBuildFileText(dbc_path,localeNameStr->name,text);
+
+    if (text.empty())
+        return 0;
+
+    size_t pos = text.find("version=\"");
+    size_t pos1 = pos + strlen("version=\"");
+    size_t pos2 = text.find("\"",pos1);
+    if (pos == text.npos || pos2 == text.npos || pos1 >= pos2)
+        return 0;
+
+    std::string build_str = text.substr(pos1,pos2-pos1);
+
+    int build = atoi(build_str.c_str());
+    if (build <= 0)
+        return 0;
+
+    return build;
+}

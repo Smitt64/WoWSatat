@@ -21,6 +21,7 @@ signals:
 
 public slots:
     Q_INVOKABLE int init();
+    Q_INVOKABLE void loadDBCStores(const QString *path);
 };
 
 QML_DECLARE_TYPE(WowStatObject)

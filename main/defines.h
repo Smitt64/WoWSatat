@@ -1,7 +1,14 @@
 #ifndef DEFINES
 #define DEFINES
 
+#include <stdio.h>
+
 typedef char const* const* DBCString;
+
+#  define I32FMT "%08I32X"
+#  define I64FMT "%016I64X"
+#  define snprintf _snprintf
+#  define vsnprintf _vsnprintf
 
 enum FieldFormat
 {
@@ -32,6 +39,13 @@ enum LocaleConstant
 };
 
 #define MAX_LOCALE 9
+
+struct LocaleNameStr
+{
+    char const* name;
+    LocaleConstant locale;
+};
+
 
 #endif // DEFINES
 
