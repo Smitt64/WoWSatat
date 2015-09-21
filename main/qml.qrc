@@ -11,5 +11,7 @@
         <file>qml/FixedSizeWindow.qml</file>
         <file>qml/Global.js</file>
         <file>qml/CloseButton.qml</file>
+        <file>Dialog.qml</file>
+        <file>WoWButton.qml</file>
     </qresource>
 </RCC>

@@ -25,5 +25,8 @@
         <file>images/ui/UI-Character-StatBackground.png</file>
         <file>images/ui/UI-DialogBox-Background.png</file>
         <file>images/ui/UI-DialogBox-Background-Dark.png</file>
+        <file>images/ui/buttons/UI-DialogBox-Button-Down.png</file>
+        <file>images/ui/buttons/UI-DialogBox-Button-Highlight.png</file>
+        <file>images/ui/buttons/UI-DialogBox-Button-Up.png</file>
     </qresource>
 </RCC>
