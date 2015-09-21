@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fonts/defaultwowfont.ttf</file>
+        <file>images/Death_knight_crest.png</file>
+        <file>images/dk_blood.png</file>
+        <file>images/dk_frost.png</file>
+        <file>images/dk_unholy.png</file>
+        <file>images/ui/ClassListBg.png</file>
+        <file>images/ui/ClassListSel.png</file>
+        <file>images/ui/GroupHeader.png</file>
+        <file>images/ui/ReforgingTextures.png</file>
+        <file>images/ui/Tileable-Parchment.png</file>
+        <file>images/ui/UI-AuctionPost-Background.png</file>
+        <file>images/ui/UI-AuctionPost-Endcaps.png</file>
+        <file>images/ui/UI-AuctionPost-Middle.png</file>
+        <file>images/ui/WorldStateFinalScoreFrame-TopBackground.png</file>
+        <file>images/ui/window/UI-TaxiFrame-BotLeft.png</file>
+        <file>images/ui/window/UI-TaxiFrame-BotRight.png</file>
+        <file>images/ui/window/UI-TaxiFrame-TopLeft.png</file>
+        <file>images/ui/window/UI-TaxiFrame-TopRight.png</file>
+        <file>images/ui/buttons/UI-Panel-MinimizeButton-Disabled.png</file>
+        <file>images/ui/buttons/UI-Panel-MinimizeButton-Down.png</file>
+        <file>images/ui/buttons/UI-Panel-MinimizeButton-Up.png</file>
+    </qresource>
+</RCC>

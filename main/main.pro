@@ -11,8 +11,11 @@ RCC_DIR = ../.build
 
 SOURCES += main.cpp \
     qmlapplicationengine.cpp \
-    wowstatobject.cpp
-RESOURCES += qml.qrc
+    wowstatobject.cpp \
+    dbfiles/dbcfileloader.cpp \
+    dbfiles/dbcstructure.cpp
+RESOURCES += qml.qrc \
+    images.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -22,5 +25,10 @@ include(deployment.pri)
 
 HEADERS += \
     qmlapplicationengine.h \
-    wowstatobject.h
+    wowstatobject.h \
+    dbfiles/dbcfileloader.h \
+    defines.h \
+    dbfiles/dbcstorage.h \
+    dbfiles/dbcstructure.h \
+    dbfiles/dbcfmt.h
 
