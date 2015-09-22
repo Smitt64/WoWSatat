@@ -46,6 +46,8 @@ struct LocaleNameStr
     LocaleConstant locale;
 };
 
+extern LocaleNameStr const fullLocaleNameList[];
+
 
 #endif // DEFINES
 

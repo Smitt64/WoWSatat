@@ -28,5 +28,11 @@
         <file>images/ui/buttons/UI-DialogBox-Button-Down.png</file>
         <file>images/ui/buttons/UI-DialogBox-Button-Highlight.png</file>
         <file>images/ui/buttons/UI-DialogBox-Button-Up.png</file>
+        <file>images/ui/BarFill.png</file>
+        <file>images/ui/UI-CastingBar-Border.png</file>
+        <file>images/ui/loadpanel/MacroPopup-BotLeft.png</file>
+        <file>images/ui/loadpanel/MacroPopup-TopLeft.png</file>
+        <file>images/ui/loadpanel/MacroPopup-TopRight.png</file>
+        <file>images/ui/loadpanel/MacroPopup-BotRight.png</file>
     </qresource>
 </RCC>

@@ -21,7 +21,7 @@ Window {
         anchors.fill: parent
     }
 
-    Loader {
+    /*Loader {
         id: mainloader
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -29,14 +29,19 @@ Window {
         onStateChanged: {
             console.log(status)
         }
+    }*/
+    Programm {
+        id: main
+        anchors.fill: parent
     }
 
     Component.onCompleted: {
-        console.log(wowFont.name)
+        /*console.log(wowFont.name)
         var stat = MainJs.initApplication()
         if (stat === 0) {
             MainJs.loadClassListComponent();
-        }
+        }*/
+        main.state = "LoadDBC"
     }
 }
 

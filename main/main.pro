@@ -3,6 +3,8 @@ TEMPLATE = app
 QT += qml quick gui widgets
 CONFIG += c++11
 
+TARGET = WoWStat
+
 DESTDIR = ../bin
 OBJECTS_DIR = ../.build
 MOC_DIR = ../.build
@@ -34,3 +36,6 @@ HEADERS += \
     dbfiles/dbcfmt.h \
     dbfiles/spells.h
 
+CONFIG(debug, debug|release): {
+    TARGET = $$join(TARGET,,,_d)
+}

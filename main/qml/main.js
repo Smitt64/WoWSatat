@@ -3,23 +3,24 @@ var ClassList;
 function initApplication() {
     var stat = WowStat.init()
 
-    if(stat == WowStat.INIT_NOERROR) {
-
-    }
-
     return stat;
 }
 
-function loadClassListComponent() {
-    mainloader.setSource("ClassList.qml", {"anchors.fill" : mainwindow});
-    ClassList = mainloader.item
-    ClassList.close.connect(closeApp);
-    /*mainwindow.width  = 240
-    mainwindow.height = 320*/
+/*function loadClassListComponent() {
+    mainloader.setSource("StartLoading.qml", {"anchors.fill" : mainwindow, "maxdbc" : WowStat.dbcCount()});
+
+    WowStat.finishLoadDbc.connect(dbcLoadFinish);
+    WowStat.loadDBCStores(mainloader.item, "")
     mainwindow.show()
 }
 
+function dbcLoadFinish() {
+    mainloader.item.destroy()
+    mainloader.setSource("ClassList.qml", {"anchors.fill" : mainwindow});
+    ClassList = mainloader.item
+    ClassList.close.connect(closeApp);
+}*/
+
 function closeApp() {
-    console.log("dffgh")
     Qt.quit()
 }
