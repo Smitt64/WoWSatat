@@ -16,5 +16,6 @@
         <file>qml/WoWButton.qml</file>
         <file>qml/WoWProgressBar.qml</file>
         <file>qml/Programm.qml</file>
+        <file>qml/WoWMessageBox.qml</file>
     </qresource>
 </RCC>

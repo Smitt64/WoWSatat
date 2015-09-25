@@ -42,8 +42,8 @@ Item {
     }
 
     ColorOverlay {
+        color: "#8b0000"
         anchors.fill: indicator
-        color: indicatorColor
     }
 
     function step() {

@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import WowStat 1.0
 
 Item {
     id: item1
@@ -77,6 +78,10 @@ Item {
         font.pixelSize: 12
 
         font.family: "Emblem"
+    }
+
+    Component.onCompleted: {
+        woWProgressBar1.max = WowStat.dbcCount()
     }
 
     function appendToLog(str) {

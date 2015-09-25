@@ -4,6 +4,7 @@
 #include "DBCFileLoader.h"
 #include <QDebug>
 #include <QObject>
+#include <QtTest/QTest>
 
 template<class T>
 class DBCStorage
@@ -167,6 +168,7 @@ inline void LoadDBC(LocalData& localeData, QObject *bar, StoreProblemList& errli
         else
             errlist.push_back(dbc_filename);
     }
+     QTest::qWait(1000);
 }
 
 #endif // DBCSTORAGE

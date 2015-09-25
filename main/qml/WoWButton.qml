@@ -3,6 +3,7 @@ import QtQuick 2.0
 Item {
     width: 75
     height: 20
+    clip: true
 
     property string caption: "text"
 
@@ -10,7 +11,7 @@ Item {
         id: image1
         anchors.bottomMargin: -8
         anchors.fill: parent
-        source: "images/ui/buttons/UI-DialogBox-Button-Up.png"
+        source: "../images/ui/buttons/UI-DialogBox-Button-Up.png"
     }
 
     Image {
@@ -19,7 +20,7 @@ Item {
         y: 4
         opacity: 0
         anchors.bottomMargin: -8
-        source: "images/ui/buttons/UI-DialogBox-Button-Down.png"
+        source: "../images/ui/buttons/UI-DialogBox-Button-Down.png"
         anchors.fill: parent
     }
 
@@ -29,6 +30,7 @@ Item {
         y: 7
         color: "#fdfdfd"
         text: caption
+        anchors.verticalCenterOffset: -1
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 12
@@ -41,12 +43,19 @@ Item {
 
             PropertyChanges {
                 target: image2
+                anchors.bottomMargin: -8
                 opacity: 1
             }
 
             PropertyChanges {
                 target: image1
                 opacity: 0
+            }
+
+            PropertyChanges {
+                target: text1
+                anchors.horizontalCenterOffset: 1
+                anchors.verticalCenterOffset: 1
             }
         }
     ]

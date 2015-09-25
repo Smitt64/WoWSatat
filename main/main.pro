@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick gui widgets
+QT += qml quick gui widgets testlib
 CONFIG += c++11
 
 TARGET = WoWStat
@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     wowstatobject.cpp \
     dbfiles/dbcfileloader.cpp \
     dbfiles/dbcstructure.cpp \
-    dbfiles/spells.cpp
+    dbfiles/spells.cpp \
+    networkimageprovider.cpp
 RESOURCES += qml.qrc \
     images.qrc
 
@@ -34,7 +35,8 @@ HEADERS += \
     dbfiles/dbcstorage.h \
     dbfiles/dbcstructure.h \
     dbfiles/dbcfmt.h \
-    dbfiles/spells.h
+    dbfiles/spells.h \
+    networkimageprovider.h
 
 CONFIG(debug, debug|release): {
     TARGET = $$join(TARGET,,,_d)
