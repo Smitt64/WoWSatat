@@ -1181,6 +1181,14 @@ struct SpellEffect
     SpellEffectEntry const* effects[3];
 };
 
+// SpellTotems.dbc
+struct SpellIconEntry
+{
+    //uint32    Id;                                           // 0        m_ID
+    quint32    IconID;    // 162-163  m_requiredTotemCategoryID
+    DBCString  IconPath;                      // 52-53    m_totem
+};
+
 typedef std::map<quint32, SpellEffect> SpellEffectMap;
 extern SpellEffectMap sSpellEffectMap;
 

@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import WowStat 1.0
+import QtQuick.Controls 1.4
 
 Item {
     id: item1
@@ -8,6 +9,9 @@ Item {
     clip: true
 
     property int maxdbc: 0
+    property int errcount: 0
+
+    signal readyToNextStep
 
     Image {
         id: image1
@@ -65,10 +69,11 @@ Item {
         anchors.topMargin: 31
     }
 
-    TextEdit {
+    TextEdit{
         id: textEdit1
         color: "#eae7e7"
         text: ""
+        textFormat: Text.RichText
         anchors.bottomMargin: 44
         anchors.rightMargin: 19
         anchors.leftMargin: 14
@@ -77,7 +82,27 @@ Item {
         readOnly: true
         font.pixelSize: 12
 
+        wrapMode: TextEdit.Wrap
+
         font.family: "Emblem"
+    }
+
+    WoWButton {
+        id: woWButton1
+        x: 207
+        y: 262
+        width: 81
+        height: 30
+        caption: qsTr("Продолжить")
+        enabled: false
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 8
+        anchors.right: parent.right
+        anchors.rightMargin: 12
+
+        onClicked: {
+            readyToNextStep()
+        }
     }
 
     Component.onCompleted: {
@@ -88,8 +113,21 @@ Item {
         textEdit1.append(str)
     }
 
+    function errorToLog(str) {
+        errcount = errcount + 1
+        textEdit1.append("<b>" + str + "</b>")
+    }
+
     function step() {
         woWProgressBar1.step()
+    }
+
+    function dbcLoadFinish() {
+        if (!errcount) {
+            readyToNextStep()
+        } else {
+            woWButton1.enable()
+        }
     }
 }
 

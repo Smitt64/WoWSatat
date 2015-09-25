@@ -65,6 +65,12 @@ Image {
                 anchors.verticalCenter: borderImage1.verticalCenter
             }
         }
+
+
+    }
+
+    Connections {
+        target: woWButton1
     }
 }
 

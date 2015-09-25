@@ -15,7 +15,8 @@ Item {
 
         onLoaded: {
             if (main.state == "LoadDBC") {
-                WowStat.finishLoadDbc.connect(dbcLoadFinish);
+                WowStat.finishLoadDbc.connect(item.dbcLoadFinish);
+                item.readyToNextStep.connect(dbcLoadFinish)
                 WowStat.loadDBCStores(mainloader.item, "")
             }
 

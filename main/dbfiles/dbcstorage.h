@@ -141,7 +141,7 @@ inline void LoadDBC(LocalData& localeData, QObject *bar, StoreProblemList& errli
                         snprintf(buf,200," (exist, but DBC locale subdir %s have DBCs for build %u instead expected build %u, it and other DBC from subdir skipped)",localStr->name,build_loc,localeData.main_build);
                         errlist.push_back(dbc_filename_loc + buf);
 
-                        QMetaObject::invokeMethod(bar, "appendToLog", Q_ARG(QString, QString::fromStdString(dbc_filename_loc + buf)));
+                        QMetaObject::invokeMethod(bar, "errorToLog", Q_ARG(QString, QString::fromStdString(dbc_filename_loc + buf)));
                     }
 
                     continue;
@@ -162,7 +162,7 @@ inline void LoadDBC(LocalData& localeData, QObject *bar, StoreProblemList& errli
             char buf[100];
             snprintf(buf, 100, " (exist, but have %u fields instead \"%u\") Wrong client version DBC file?", storage.GetFieldCount(), strlen(storage.GetFormat()));
             errlist.push_back(dbc_filename + buf);
-            QMetaObject::invokeMethod(bar, "appendToLog", Q_ARG(QString, QString::fromStdString(dbc_filename + buf)));
+            QMetaObject::invokeMethod(bar, "errorToLog", Q_ARG(QVariant, QString::fromStdString(dbc_filename + buf)));
             fclose(f);
         }
         else

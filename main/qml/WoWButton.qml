@@ -1,11 +1,15 @@
 import QtQuick 2.0
 
 Item {
+    id: btn
     width: 75
     height: 20
     clip: true
 
     property string caption: "text"
+    property bool enabled: true
+
+    signal clicked
 
     Image {
         id: image1
@@ -24,6 +28,14 @@ Item {
         anchors.fill: parent
     }
 
+    Image {
+        id: image3
+        opacity: 0
+        anchors.fill: parent
+        anchors.bottomMargin: -8
+        source: "../images/ui/buttons/UI-DialogBox-Button-Disabled.png"
+    }
+
     Text {
         id: text1
         x: 26
@@ -35,6 +47,22 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 12
         font.family: "Emblem"
+    }
+
+    MouseArea {
+        id: mouseArea1
+        anchors.fill: parent
+        //hoverEnabled: true
+
+        onPressed: {
+            btn.state = "pressed"
+        }
+
+        onReleased: {
+            btn.state = ""
+        }
+
+        onClicked: btn.clicked()
     }
 
     states: [
@@ -57,7 +85,54 @@ Item {
                 anchors.horizontalCenterOffset: 1
                 anchors.verticalCenterOffset: 1
             }
+        },
+        State {
+            name: "disabled"
+
+            PropertyChanges {
+                target: image2
+                opacity: 0
+            }
+
+            PropertyChanges {
+                target: image1
+                opacity: 0
+            }
+
+            PropertyChanges {
+                target: image3
+                opacity: 1
+            }
+
+            PropertyChanges {
+                target: text1
+                color: "#a99b9b"
+            }
         }
     ]
+
+    function disable() {
+        btn.state = "disabled"
+        mouseArea1.visible = false
+    }
+
+    function enable() {
+        btn.state = ""
+        mouseArea1.visible = true
+    }
+
+    Component.onCompleted: {
+        if (!btn.enabled) {
+            disable()
+        }
+    }
+
+    onEnabledChanged: {
+        if (!btn.enabled) {
+            disable()
+        } else {
+            enable()
+        }
+    }
 }
 

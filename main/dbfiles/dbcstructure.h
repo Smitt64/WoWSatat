@@ -26,5 +26,7 @@ extern DBCStorage <SpellShapeshiftEntry>          sSpellShapeshiftStore;
 extern DBCStorage <SpellTargetRestrictionsEntry>  sSpellTargetRestrictionsStore;
 extern DBCStorage <SpellTotemsEntry>              sSpellTotemsStore;
 
+extern DBCStorage <SpellIconEntry>                sSpellIconStore;
+
 #endif // DBCSTRUCTURE
 

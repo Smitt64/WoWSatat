@@ -107,6 +107,8 @@ const char SpellScalingEntryfmt[]="diiiiffffffffffi";
 const char SpellShapeshiftEntryfmt[]="dixixx";
 const char SpellTargetRestrictionsEntryfmt[]="dfiiii";
 const char SpellTotemsEntryfmt[]="diiii";
+const char SpellIconEntryfmt[]="dis";
+
 const char SpellFocusObjectfmt[]="nx";
 const char SpellItemEnchantmentfmt[]="nxiiiiiixxxiiisiiiixxxx";
 const char SpellItemEnchantmentConditionfmt[]="nbbbbbxxxxxbbbbbbbbbbiiiiiXXXXX";

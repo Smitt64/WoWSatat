@@ -29,6 +29,8 @@ void WoWDbcLoaderRunable::run()
     LoadDBC(availableDbcLocales,_bar,bad_dbc_files,sSpellCooldownsStore,           dbcPath,"SpellCooldowns.dbc");
     LoadDBC(availableDbcLocales,_bar,bad_dbc_files,sSpellEffectStore,              dbcPath,"SpellEffect.dbc");
 
+    LoadDBC(availableDbcLocales,_bar,bad_dbc_files,sSpellIconStore,              dbcPath,"SpellIcon.dbc");
+
     emit finished();
 }
 

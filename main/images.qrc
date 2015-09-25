@@ -34,5 +34,6 @@
         <file>images/ui/loadpanel/MacroPopup-TopLeft.png</file>
         <file>images/ui/loadpanel/MacroPopup-TopRight.png</file>
         <file>images/ui/loadpanel/MacroPopup-BotRight.png</file>
+        <file>images/ui/buttons/UI-DialogBox-Button-Disabled.png</file>
     </qresource>
 </RCC>
