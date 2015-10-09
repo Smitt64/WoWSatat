@@ -35,6 +35,13 @@ Window {
         anchors.fill: parent
     }
 
+    WoWItemBase {
+        width: 64
+        height: 64
+        fillColor: "#000000"
+
+    }
+
     Component.onCompleted: {
         /*console.log(wowFont.name)
         var stat = MainJs.initApplication()

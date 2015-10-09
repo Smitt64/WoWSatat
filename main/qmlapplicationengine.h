@@ -17,6 +17,7 @@ public slots:
     void warnings(const QList<QQmlError> &warnings);
 
 private:
+    void reg();
     WowStatObject *wstobj;
 };
 

@@ -2,14 +2,12 @@
 #include <QtQml>
 #include <QMessageBox>
 #include "wowstatobject.h"
+#include "QmlItems/wowitembase.h"
 
 QmlApplicationEngine::QmlApplicationEngine(QObject *parent) : QQmlApplicationEngine(parent)
 {
     wstobj = new WowStatObject(this);
-
-    qmlRegisterUncreatableType<WowStatObject>("WowStat", 1, 0, "WowStatApp", "");
-    //qmlRegisterUncreatableType<WowStatObject::InitErrors>("WowStat", 1, 0, "InitError", "");
-
+    reg();
     rootContext()->setContextProperty("WowStat", wstobj);
 
     connect(this, SIGNAL(warnings(QList<QQmlError>)), SLOT(warnings(QList<QQmlError>)));
@@ -22,4 +20,10 @@ void QmlApplicationEngine::warnings(const QList<QQmlError> &warnings)
         str += err.toString() + "\n";
     }
     QMessageBox::warning(NULL, "Error", str);
+}
+
+void QmlApplicationEngine::reg()
+{
+    qmlRegisterUncreatableType<WowStatObject>("WowStat", 1, 0, "WowStatApp", "");
+    qmlRegisterType<WoWItemBase>("WowStat", 1, 0, "WoWItemBase");
 }

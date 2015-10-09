@@ -1,9 +1,10 @@
 TEMPLATE = app
 
 QT += qml quick gui widgets testlib
-CONFIG += c++11
+CONFIG += c++11 plugin static
 
 TARGET = WoWStat
+#TARGET = $$qtLibraryTarget(WoWStat)
 
 DESTDIR = ../bin
 OBJECTS_DIR = ../.build
@@ -17,7 +18,8 @@ SOURCES += main.cpp \
     dbfiles/dbcfileloader.cpp \
     dbfiles/dbcstructure.cpp \
     dbfiles/spells.cpp \
-    networkimageprovider.cpp
+    networkimageprovider.cpp \
+    QmlItems/wowitembase.cpp
 RESOURCES += qml.qrc \
     images.qrc
 
@@ -36,7 +38,8 @@ HEADERS += \
     dbfiles/dbcstructure.h \
     dbfiles/dbcfmt.h \
     dbfiles/spells.h \
-    networkimageprovider.h
+    networkimageprovider.h \
+    QmlItems/wowitembase.h
 
 CONFIG(debug, debug|release): {
     TARGET = $$join(TARGET,,,_d)

@@ -35,5 +35,6 @@
         <file>images/ui/loadpanel/MacroPopup-TopRight.png</file>
         <file>images/ui/loadpanel/MacroPopup-BotRight.png</file>
         <file>images/ui/buttons/UI-DialogBox-Button-Disabled.png</file>
+        <file>images/ui/items/WoWUnknownItem01.png</file>
     </qresource>
 </RCC>
