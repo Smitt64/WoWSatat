@@ -36,6 +36,7 @@ Window {
     }
 
     WoWItemBase {
+        id: base
         width: 64
         height: 64
         fillColor: "#000000"
@@ -48,6 +49,7 @@ Window {
         if (stat === 0) {
             MainJs.loadClassListComponent();
         }*/
+        base.loadFromUrl("https://yastatic.net/islands/_/uBeuL5reE-5D8m89Ky4i6XNh8yo.svg")
         main.state = "LoadDBC"
     }
 }
