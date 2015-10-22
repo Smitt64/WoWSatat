@@ -40,6 +40,7 @@
     <property name="title">
      <string>Filter</string>
     </property>
+    <addaction name="actionSet_filter"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -67,6 +68,11 @@
   <action name="actionShow_formt_string">
    <property name="text">
     <string>Show formt string</string>
+   </property>
+  </action>
+  <action name="actionSet_filter">
+   <property name="text">
+    <string>Set filter</string>
    </property>
   </action>
  </widget>

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml xmlpatterns
+QT       += core gui xml xmlpatterns script
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     stringlistdlg.cpp \
     seldefenitiondlg.cpp \
     comboboxdelegate.cpp \
-    db2filtersortmodel.cpp
+    db2filtersortmodel.cpp \
+    filterdlg.cpp
 
 HEADERS  += mainwindow.h \
     db2window.h \
@@ -32,9 +33,11 @@ HEADERS  += mainwindow.h \
     stringlistdlg.h \
     seldefenitiondlg.h \
     comboboxdelegate.h \
-    db2filtersortmodel.h
+    db2filtersortmodel.h \
+    filterdlg.h
 
 FORMS    += mainwindow.ui \
     db2window.ui \
     stringlistdlg.ui \
-    seldefenitiondlg.ui
+    seldefenitiondlg.ui \
+    filterdlg.ui

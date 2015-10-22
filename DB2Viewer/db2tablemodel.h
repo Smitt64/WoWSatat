@@ -4,6 +4,7 @@
 #include <QAbstractTableModel>
 #include <QVector>
 #include <QStandardItemModel>
+#include <QScriptEngine>
 
 typedef struct
 {
@@ -61,13 +62,20 @@ public:
 
     void clearDbInfo();
 
+    QScriptEngine *script()  { return &scriptEngine; }
+
     void setTypeToFloat(const quint16 &fldNum);
     void setTypeToString(const quint16 &fldNum);
     void setTypeToInt(const quint16 &fldNum);
     void setType(const quint16 &fldNum, const QString &Name);
     QString getStringFld(const quint32 &offset) const;
 
+    /*inline */int getIntItem(const quint32 &row, const quint32 &col);
+    /*inline */float getFloatItem(const quint32 &row, const quint32 &col);
+    /*inline */QString getStringItem(const quint32 &row, const quint32 &col);
+
     QString makeFormat();
+    const QString &formaStr() const { return format; }
 private:
     void loadDB2(DB2Header *header, QFile *f);
     void loadDBC(DBCHeader *header, QFile *f);
@@ -80,6 +88,8 @@ private:
     quint32 recordSize;
     quint32 stringTableSize;
     quint32 dbbuild;
+
+    QScriptEngine scriptEngine;
 
     quint64 dataLen;
 

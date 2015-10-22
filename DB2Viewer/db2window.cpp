@@ -2,7 +2,9 @@
 #include "ui_db2window.h"
 #include "db2tablemodel.h"
 #include "stringlistdlg.h"
+#include "db2filtersortmodel.h"
 #include "seldefenitiondlg.h"
+#include "filterdlg.h"
 #include <QFileInfo>
 #include <QInputDialog>
 
@@ -14,7 +16,7 @@ DB2Window::DB2Window(QWidget *parent) :
     dbModel = new DB2TableModel(this);
     tableView = new QTableView(this);
 
-    tableView->setModel(dbModel);
+    filter = new DB2FilterSortModel(this);
 
     QHeaderView *verticalHeader = tableView->verticalHeader();
     verticalHeader->setDefaultSectionSize(22);
@@ -38,6 +40,9 @@ DB2Window::DB2Window(QWidget *parent) :
 
     tableView->addActions(typeAction);
     tableView->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    connect(valueFilter, SIGNAL(triggered(bool)), SLOT(filterByColumnValue()));
+
 }
 
 DB2Window::~DB2Window()
@@ -49,13 +54,14 @@ void DB2Window::load(const QString &str)
 {
     if (dbModel->load(str))
     {
+        filter->setSourceModel(dbModel);
+        tableView->setModel(filter);
         setWindowTitle(QFileInfo(str).fileName());
     }
 }
 
 void DB2Window::showStringsList()
 {
-
     StringListDlg dlg(dbModel->string_block, dbModel->stringTableSize, this);
     dlg.exec();
 }
@@ -70,16 +76,64 @@ void DB2Window::onTypeAction()
     }
 }
 
-/*void DB2Window::onString()
+void DB2Window::setFilter()
 {
-    QModelIndexList lst = tableView->selectionModel()->selectedIndexes();
+    QStringList lst;
 
-    foreach (QModelIndex index, lst) {
-        dbModel->setTypeToString(index.column());
+    for (int i = 0; i < dbModel->fieldsOffsets.size(); i++)
+    {
+        lst.append(dbModel->fieldsOffsets[i].title + QString(":%1").arg(i + 1));
     }
-}*/
+
+    FilterDlg dlg(lst, this);
+
+    if (dlg.exec())
+    {
+        filter->setFilterString(dlg.getFilterString());
+        filter->invalidate();
+    }
+}
 
 void DB2Window::showFormatString()
 {
     QInputDialog::getText(this, tr("Format string"), "", QLineEdit::Normal, dbModel->makeFormat());
+}
+
+void DB2Window::filterByColumnValue()
+{
+    QModelIndexList lst = tableView->selectionModel()->selectedIndexes();
+
+    if (lst.size())
+    {
+        bool ok = false;
+        QVariant val;
+        switch(dbModel->formaStr()[lst[0].column()].toLatin1())
+        {
+        case FLD_INT:
+        case FLD_KEY:
+            {
+                val = QInputDialog::getInt(this, "Filter by:", "Enter value:", lst[0].data().toInt(),
+                        -2147483647, 2147483647, 1, &ok);
+            }
+            break;
+        case FLD_FLOAT:
+            {
+                val = QInputDialog::getDouble(this, "Filter by:", "Enter value:", lst[0].data().toDouble(),
+                        -2147483647, 2147483647, 1, &ok);
+            }
+            break;
+        case FLD_STRING:
+            {
+                val = QInputDialog::getText(this, "Filter by:", "Enter value:", QLineEdit::Normal,
+                                            lst[0].data().toString(), &ok);
+            }
+            break;
+        }
+
+        if (ok)
+        {
+            filter->filterByColumnValue(lst[0].column(), val);
+            filter->invalidate();
+        }
+    }
 }

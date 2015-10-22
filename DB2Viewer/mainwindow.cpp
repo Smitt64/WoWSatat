@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpen, SIGNAL(triggered(bool)), SLOT(open()));
     connect(ui->actionString_table, SIGNAL(triggered(bool)), SLOT(showStringsTable()));
     connect(ui->actionShow_formt_string, SIGNAL(triggered(bool)), SLOT(showFormatString()));
+    connect(ui->actionSet_filter, SIGNAL(triggered(bool)), SLOT(setFilterDlg()));
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +50,17 @@ void MainWindow::showStringsTable()
     {
         DB2Window *w = (DB2Window*)wnd->widget();
         w->showStringsList();
+    }
+}
+
+void MainWindow::setFilterDlg()
+{
+    QMdiSubWindow *wnd = mdi->currentSubWindow();
+
+    if (wnd)
+    {
+        DB2Window *w = (DB2Window*)wnd->widget();
+        w->setFilter();
     }
 }
 

@@ -20,6 +20,7 @@ public slots:
     void open();
     void showFormatString();
     void showStringsTable();
+    void setFilterDlg();
 
 private:
     Ui::MainWindow *ui;

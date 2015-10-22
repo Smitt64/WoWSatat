@@ -13,6 +13,7 @@ class DB2Window;
 }
 
 class DB2TableModel;
+class DB2FilterSortModel;
 class DB2Window : public QMainWindow
 {
     Q_OBJECT
@@ -23,12 +24,16 @@ public:
     void load(const QString &str);
     void showStringsList();
     void showFormatString();
+    void setFilter();
 
 private slots:
     void onTypeAction();
+    void filterByColumnValue();
+
 private:
     Ui::DB2Window *ui;
     DB2TableModel *dbModel;
+    DB2FilterSortModel *filter;
     QTableView *tableView;
 
     QAction *valueFilter;

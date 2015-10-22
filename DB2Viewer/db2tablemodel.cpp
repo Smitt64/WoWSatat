@@ -151,6 +151,30 @@ QString DB2TableModel::getStringFld(const quint32 &offset) const
     return QString("");
 }
 
+int DB2TableModel::getIntItem(const quint32 &row, const quint32 &col)
+{
+    //char *ptr = ((char*)dataTable) + row * recordSize + fieldsOffsets[col].offset;
+    return *reinterpret_cast<int*>((char*)(dataTable + row * recordSize + fieldsOffsets[col].offset));
+}
+
+float DB2TableModel::getFloatItem(const quint32 &row, const quint32 &col)
+{
+    return *reinterpret_cast<float*>((char*)(dataTable + row * recordSize + fieldsOffsets[col].offset));
+}
+
+QString DB2TableModel::getStringItem(const quint32 &row, const quint32 &col)
+{
+    int stroffset = *reinterpret_cast<int*>((char*)(dataTable + row * recordSize + fieldsOffsets[col].offset));
+
+    if (string_block + stroffset < string_block + stringTableSize)
+    {
+        QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+        return codec->toUnicode((char*)string_block + (stroffset));
+    }
+
+    return QString("");
+}
+
 void DB2TableModel::setType(const quint16 &fldNum, const QString &Name)
 {
     QAbstractTableModel::beginResetModel();
