@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sql/item_icon_cache.sql</file>
+    </qresource>
+</RCC>

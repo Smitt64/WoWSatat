@@ -17,5 +17,9 @@
         <file>qml/WoWProgressBar.qml</file>
         <file>qml/Programm.qml</file>
         <file>qml/WoWMessageBox.qml</file>
+        <file>qml/WoWEquipToolTip.qml</file>
+        <file>qml/WoWEquipToolTip.js</file>
+        <file>qml/WoWToolTipRoot.qml</file>
+        <file>qml/WoWMoneyWidget.qml</file>
     </qresource>
 </RCC>

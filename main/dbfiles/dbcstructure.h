@@ -2,7 +2,11 @@
 #define DBCSTRUCTURE
 
 #include "dbcstorage.h"
+#include "db2store.h"
 #include "spells.h"
+#include "itemsdbc.h"
+#include "common.h"
+#include "wdbstore.h"
 
 /*extern DBCStorage <SpellRadiusEntry>             sSpellRadiusStore;
 extern DBCStorage <SpellRangeEntry>              sSpellRangeStore;
@@ -25,8 +29,15 @@ extern DBCStorage <SpellScalingEntry>             sSpellScalingStore;
 extern DBCStorage <SpellShapeshiftEntry>          sSpellShapeshiftStore;
 extern DBCStorage <SpellTargetRestrictionsEntry>  sSpellTargetRestrictionsStore;
 extern DBCStorage <SpellTotemsEntry>              sSpellTotemsStore;
-
 extern DBCStorage <SpellIconEntry>                sSpellIconStore;
+
+extern DBCStorage <ItemClass>                     sItemClass;
+extern DBCStorage <ItemSubClass>                  sItemSubClass;
+extern DBCStorage <ChrClasses>                    sChrClasses;
+extern DBCStorage <ChrRaces>                      sChrRaces;
+
+extern WDBStore <ItemSparse>                      wItemSparse;
+extern WDBStore <WChrClasses> wChrClasses;
 
 #endif // DBCSTRUCTURE
 

@@ -5,6 +5,7 @@
 #include "QmlItems/wowequip.h"
 #include "QmlItems/wowequipstat.h"
 #include "QmlItems/wowitembase.h"
+#include "QmlItems/wowitemsetbonus.h"
 
 QmlApplicationEngine::QmlApplicationEngine(QObject *parent) : QQmlApplicationEngine(parent)
 {
@@ -27,6 +28,8 @@ void QmlApplicationEngine::warnings(const QList<QQmlError> &warnings)
 void QmlApplicationEngine::reg()
 {
     qmlRegisterUncreatableType<WowStatObject>("WowStat", 1, 0, "WowStatApp", "");
+    qmlRegisterUncreatableType<WoWItemSetBonus>("WowStat", 1, 0, "WoWItemSetBonus", "");
+    
     qmlRegisterType<WoWItemBase>("WowStat", 1, 0, "WoWItemBase");
     qmlRegisterType<WoWEquip>("WowStat", 1, 0, "WoWEquip");
     qmlRegisterType<WoWEquipStat>("WowStat", 1, 0, "WoWEquipStat");

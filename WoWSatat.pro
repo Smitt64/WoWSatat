@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
 
-SUBDIRS = main
+SUBDIRS = main \
+    DB2Viewer

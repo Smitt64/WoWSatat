@@ -2,6 +2,8 @@
 #define DBCSTORAGE
 
 #include "DBCFileLoader.h"
+#include "db2fileloader.h"
+#include "db2store.h"
 #include <QDebug>
 #include <QObject>
 #include <QtTest/QTest>
@@ -101,6 +103,17 @@ struct LocalData
     quint32 checkedDbcLocaleBuilds;
 };
 
+struct LocalDB2Data
+{
+    LocalDB2Data(LocaleConstant loc)
+        : defaultLocale(loc), availableDb2Locales(0xFFFFFFFF) {}
+
+    LocaleConstant defaultLocale;
+
+    // bitmasks for index of fullLocaleNameList
+    quint32 availableDb2Locales;
+};
+
 typedef std::list<std::string> StoreProblemList;
 
 template<class T>
@@ -166,9 +179,59 @@ inline void LoadDBC(LocalData& localeData, QObject *bar, StoreProblemList& errli
             fclose(f);
         }
         else
-            errlist.push_back(dbc_filename);
+        {
+            char buf[100];
+            snprintf(buf, 100, " not exist");
+            QMetaObject::invokeMethod(bar, "errorToLog", Q_ARG(QVariant, QString::fromStdString(dbc_filename + buf)));
+            //errlist.push_back(dbc_filename);
+        }
     }
-     QTest::qWait(1000);
+     //QTest::qWait(1000);
+}
+
+template<class T>
+inline void LoadDB2(LocalDB2Data& localeData, QObject *bar, StoreProblemList& errors, DB2Storage<T>& storage, std::string const& db2Path, std::string const& filename)
+{
+    // compatibility format and C++ structure sizes
+    //MANGOS_ASSERT(DB2FileLoader::GetFormatRecordSize(storage.GetFormat()) == sizeof(T) || LoadDB2_assert_print(DB2FileLoader::GetFormatRecordSize(storage.GetFormat()), sizeof(T), filename));
+
+    //++DB2FileCount;
+    std::string db2Filename = db2Path + "db2/" + filename;
+            //db2Path + filename;
+    if (storage.Load(db2Filename.c_str(), localeData.defaultLocale))
+    {
+        for(quint8 i = 0; fullLocaleNameList[i].name; ++i)
+        {
+            if (!(localeData.availableDb2Locales & (1 << i)))
+                continue;
+
+            LocaleNameStr const* localStr = &fullLocaleNameList[i];
+
+            std::string db2_dir_loc = db2Path + localStr->name + "/";
+
+            std::string localizedName = db2Path + localStr->name + "/" + filename;
+            if(!storage.LoadStringsFrom(localizedName.c_str(), localStr->locale))
+                localeData.availableDb2Locales &= ~(1<<i);  // mark as not available for speedup next checks
+        }
+    }
+    else
+    {
+        // sort problematic db2 to (1) non compatible and (2) nonexistent
+        if (FILE* f = fopen(db2Filename.c_str(), "rb"))
+        {
+            char buf[100];
+            snprintf(buf, 100, " (exist, but have %d fields instead %d) Wrong client version DB2 file?", storage.GetFieldCount(), strlen(storage.GetFormat()));
+            QMetaObject::invokeMethod(bar, "errorToLog", Q_ARG(QVariant, QString::fromStdString(db2Filename + buf)));
+            fclose(f);
+        }
+        else
+        {
+            char buf[100];
+            snprintf(buf, 100, " not exist");
+            QMetaObject::invokeMethod(bar, "errorToLog", Q_ARG(QVariant, QString::fromStdString(db2Filename + buf)));
+        }
+            //errors.push_back(db2Filename);
+    }
 }
 
 #endif // DBCSTORAGE

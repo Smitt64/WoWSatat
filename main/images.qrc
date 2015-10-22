@@ -36,5 +36,10 @@
         <file>images/ui/loadpanel/MacroPopup-BotRight.png</file>
         <file>images/ui/buttons/UI-DialogBox-Button-Disabled.png</file>
         <file>images/ui/items/WoWUnknownItem01.png</file>
+        <file>images/ui/tooltip/ToolTip_Borderd.png</file>
+        <file>images/ui/tooltip/UI-Tooltip-Background.png</file>
+        <file>images/ui/money/money-copper.png</file>
+        <file>images/ui/money/money-gold.png</file>
+        <file>images/ui/money/money-silver.png</file>
     </qresource>
 </RCC>

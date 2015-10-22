@@ -15,8 +15,8 @@ const char CharStartOutfitEntryfmt[]="diiiiiiiiiiiiiiiiiiiiiiiiixxxxxxxxxxxxxxxx
 const char CharTitlesEntryfmt[]="nxsxix";
 const char ChatChannelsEntryfmt[]="iixsx";
                                                             // ChatChannelsEntryfmt, index not used (more compact store)
-const char ChrClassesEntryfmt[]="nixsxxxixiiiii";
-const char ChrRacesEntryfmt[]="nxixiixixxxxixsxxxxxixxx";
+const char ChrClassesEntryfmt[]="nisssssiiiiiii";
+const char ChrRacesEntryfmt[]="niiiiisiiiisiissssssiiiiiiiixxxxxxiiiiix";
 const char ChrClassesXPowerTypesfmt[]="nii";
 const char CinematicSequencesEntryfmt[]="nxxxxxxxxx";
 const char CreatureDisplayInfofmt[]="nxxifxxxxxxxxxxxx";
@@ -53,6 +53,7 @@ const char GtOCTBaseHPByClassfmt[]="df";
 const char GtOCTBaseMPByClassfmt[]="df";
 const char Holidaysfmt[]="nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 const char ItemClassfmt[]="nixxxs";
+const char ItemSubClassfmt[]="niiiiiiiiiiss";
 const char ItemArmorQualityfmt[]="nfffffffi";
 const char ItemArmorShieldfmt[]="nifffffff";
 const char ItemArmorTotalfmt[]="niffff";
@@ -107,7 +108,7 @@ const char SpellScalingEntryfmt[]="diiiiffffffffffi";
 const char SpellShapeshiftEntryfmt[]="dixixx";
 const char SpellTargetRestrictionsEntryfmt[]="dfiiii";
 const char SpellTotemsEntryfmt[]="diiii";
-const char SpellIconEntryfmt[]="dis";
+const char SpellIconEntryfmt[]="is";
 
 const char SpellFocusObjectfmt[]="nx";
 const char SpellItemEnchantmentfmt[]="nxiiiiiixxxiiisiiiixxxx";
@@ -133,6 +134,9 @@ const char WorldMapAreaEntryfmt[]="xinxffffixxxxx";
 const char WorldMapOverlayEntryfmt[]="nxiiiixxxxxxxxx";
 const char WorldSafeLocsEntryfmt[]="nifffx";
 const char WorldPvPAreaEnrtyfmt[]="niiiiii";
+
+//const char ItemSparsefmt[]="niiiiffiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiifffffiiiiiiiifisiiisiiiiiiiiiiiiiiiiiiifiiifiii";
+const char ItemSparsefmt[]="niiiiffiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisiiisiiiiiiiiiiiiiiiiiiiiiiiiiii";
 
 #endif // DBCFMT
 

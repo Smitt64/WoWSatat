@@ -10,6 +10,8 @@ typedef char const* const* DBCString;
 #  define snprintf _snprintf
 #  define vsnprintf _vsnprintf
 
+#define EndianConvert(x)
+
 enum FieldFormat
 {
     FT_NA = 'x',                                            // ignore/ default, 4 byte size, in Source String means field is ignored, in Dest String means field is filled with default value

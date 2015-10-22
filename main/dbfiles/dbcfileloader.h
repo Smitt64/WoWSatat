@@ -6,7 +6,6 @@
 #include "dbcstorage.h"
 #include <cassert>
 
-#define EndianConvert(x)
 extern LocaleNameStr const fullLocaleNameList[];
 
 class DBCFileLoader

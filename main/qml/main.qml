@@ -35,12 +35,17 @@ Window {
         anchors.fill: parent
     }
 
-    WoWItemBase {
+    WoWEquip {
         id: base
         width: 64
         height: 64
-        fillColor: "#000000"
+        itemId: 125194
 
+        WoWToolTipRoot {
+            anchors.fill: parent
+            equip: base
+            showAfterTime: 1000
+        }
     }
 
     Component.onCompleted: {
@@ -49,8 +54,6 @@ Window {
         if (stat === 0) {
             MainJs.loadClassListComponent();
         }*/
-        base.loadFromUrl("https://yastatic.net/islands/_/uBeuL5reE-5D8m89Ky4i6XNh8yo.svg")
         main.state = "LoadDBC"
     }
 }
-

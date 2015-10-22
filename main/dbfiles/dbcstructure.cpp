@@ -19,3 +19,11 @@ DBCStorage <SpellTargetRestrictionsEntry> sSpellTargetRestrictionsStore(SpellTar
 DBCStorage <SpellTotemsEntry> sSpellTotemsStore(SpellTotemsEntryfmt);
 
 DBCStorage <SpellIconEntry> sSpellIconStore(SpellIconEntryfmt);
+
+DBCStorage <ItemClass> sItemClass(ItemClassfmt);
+DBCStorage <ItemSubClass> sItemSubClass(ItemSubClassfmt);
+DBCStorage <ChrClasses> sChrClasses(ChrClassesEntryfmt);
+DBCStorage <ChrRaces> sChrRaces(ChrRacesEntryfmt);
+
+WDBStore <ItemSparse> wItemSparse(ItemSparsefmt);
+WDBStore<WChrClasses> wChrClasses(ChrClassesEntryfmt);
