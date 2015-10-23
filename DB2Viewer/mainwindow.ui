@@ -41,6 +41,7 @@
      <string>Filter</string>
     </property>
     <addaction name="actionSet_filter"/>
+    <addaction name="actionDisable_filter"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -73,6 +74,11 @@
   <action name="actionSet_filter">
    <property name="text">
     <string>Set filter</string>
+   </property>
+  </action>
+  <action name="actionDisable_filter">
+   <property name="text">
+    <string>Disable filter</string>
    </property>
   </action>
  </widget>

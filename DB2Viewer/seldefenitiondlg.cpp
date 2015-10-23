@@ -7,7 +7,7 @@
 #include <QStringListModel>
 #include "comboboxdelegate.h"
 
-DefItem ItemTypes[5] =
+DefItem ItemTypes[ITEMSCOUNT] =
 {
     {"int", 'i', sizeof(int)},
     {"key", 'n', sizeof(int)},
@@ -15,6 +15,19 @@ DefItem ItemTypes[5] =
     {"string", 's', sizeof(char*)},
     {"double", 'd', sizeof(double)}
 };
+
+char FindTypeForName(const QString &name)
+{
+    for (int i = 0; i < ITEMSCOUNT; i++)
+    {
+        if (ItemTypes[i].name == name)
+        {
+            return ItemTypes[i].type;
+        }
+    }
+
+    return 'i';
+}
 
 SelDefenitionDlg::SelDefenitionDlg(QWidget *parent) :
     QDialog(parent),

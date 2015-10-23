@@ -18,6 +18,7 @@ typedef struct
 
 #define ITEMSCOUNT 5
 extern DefItem ItemTypes[ITEMSCOUNT];
+char FindTypeForName(const QString &name);
 
 class ComboBoxDelegate;
 class SelDefenitionDlg : public QDialog
@@ -29,6 +30,8 @@ public:
     ~SelDefenitionDlg();
 
     void fillDefenition(const QString &filename, quint32 build);
+
+    QStandardItemModel *defenition() { return defModel; }
 
 private slots:
     void buildClicked(const QModelIndex &index);

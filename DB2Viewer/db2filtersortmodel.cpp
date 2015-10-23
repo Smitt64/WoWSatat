@@ -30,7 +30,7 @@ bool DB2FilterSortModel::lessThan(const QModelIndex &left,
 
 bool DB2FilterSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (!m_Script.isEmpty())
+    if (m_fUseFilter)
     {
         DB2TableModel *m = ((DB2TableModel*)sourceModel());
 
@@ -50,7 +50,6 @@ bool DB2FilterSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sour
                 args << m->getStringItem(sourceRow, v.field);
                 break;
             }
-
         }
         QScriptValue result = fun->call(QScriptValue(), args);
         return result.toBool();
@@ -74,7 +73,7 @@ void DB2FilterSortModel::setFilterString(const QString &_str)
     m_Script = str;
 
     DB2TableModel *m = (DB2TableModel*)sourceModel();
-    fmt = m->formaStr();
+    fmt = m->makeFormat();
 
     engine = m->script();
 
@@ -115,4 +114,5 @@ void DB2FilterSortModel::setFilterString(const QString &_str)
         delete fun;
     }
     fun = new QScriptValue(engine->evaluate(m_Script));
+    m_fUseFilter = true;
 }

@@ -29,12 +29,15 @@ public:
 private slots:
     void onTypeAction();
     void filterByColumnValue();
+    void onCopy();
 
 private:
     Ui::DB2Window *ui;
     DB2TableModel *dbModel;
     DB2FilterSortModel *filter;
     QTableView *tableView;
+
+    QAction *actionCopy;
 
     QAction *valueFilter;
 };

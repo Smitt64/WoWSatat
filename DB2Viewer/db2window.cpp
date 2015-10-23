@@ -7,6 +7,7 @@
 #include "filterdlg.h"
 #include <QFileInfo>
 #include <QInputDialog>
+#include <QClipboard>
 
 DB2Window::DB2Window(QWidget *parent) :
     QMainWindow(parent),
@@ -26,7 +27,12 @@ DB2Window::DB2Window(QWidget *parent) :
     /*asFloat = new QAction(tr("Float"), this);
     asInt = new QAction(tr("Integer"), this);
     asString = new QAction(tr("String"), this);*/
+    actionCopy = new QAction(tr("Copy"), this);
+    actionCopy->setShortcut(QKeySequence(QKeySequence::Copy));
     QList<QAction*> typeAction;
+    typeAction.append(actionCopy);
+    typeAction.append(new QAction(this));
+    typeAction.last()->setSeparator(true);
     for (int i = 0; i < ITEMSCOUNT; i++)
     {
         typeAction.append(new QAction(ItemTypes[i].name, this));
@@ -42,7 +48,7 @@ DB2Window::DB2Window(QWidget *parent) :
     tableView->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     connect(valueFilter, SIGNAL(triggered(bool)), SLOT(filterByColumnValue()));
-
+    connect(actionCopy, SIGNAL(triggered(bool)), SLOT(onCopy()));
 }
 
 DB2Window::~DB2Window()
@@ -58,6 +64,21 @@ void DB2Window::load(const QString &str)
         tableView->setModel(filter);
         setWindowTitle(QFileInfo(str).fileName());
     }
+}
+
+void DB2Window::onCopy()
+{
+    QModelIndexList lst = tableView->selectionModel()->selectedIndexes();
+
+    QString clip;
+    if (lst.size() > 0)
+    {
+        clip = lst[0].data().toString();
+    }
+    /*foreach (QModelIndex index, lst) {
+        clip += index.data().toString() + ",";
+    }*/
+    QApplication::clipboard()->setText(clip);
 }
 
 void DB2Window::showStringsList()

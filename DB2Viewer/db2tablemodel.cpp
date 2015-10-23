@@ -93,7 +93,20 @@ bool DB2TableModel::load(const QString &filename)
     }
 
     defDlg->fillDefenition(filename, dbbuild);
-    defDlg->exec();
+    if (defDlg->exec() == QDialog::Accepted)
+    {
+        QAbstractTableModel::beginResetModel();
+        QStandardItemModel *st = defDlg->defenition();
+        for (int i = 0; i < st->rowCount(); i++)
+        {
+            if (i < fieldCount)
+            {
+                fieldsOffsets[i].title = st->data(st->index(i, 0)).toString();
+                fieldsOffsets[i].type = (FldType)FindTypeForName(st->data(st->index(i, 1)).toString());
+            }
+        }
+        QAbstractTableModel::endResetModel();
+    }
 
     return ret;
 }

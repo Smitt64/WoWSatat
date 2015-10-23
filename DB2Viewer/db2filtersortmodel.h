@@ -37,6 +37,7 @@ private:
     QScriptValue *fun;
 
     QString m_filter, m_Script;
+    bool m_fUseFilter;
     QList<BoundValues> m_BoundValues;
 };
 
