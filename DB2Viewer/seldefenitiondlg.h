@@ -16,7 +16,7 @@ typedef struct
     quint16 size;
 }DefItem;
 
-#define ITEMSCOUNT 5
+#define ITEMSCOUNT 6
 extern DefItem ItemTypes[ITEMSCOUNT];
 char FindTypeForName(const QString &name);
 
@@ -33,15 +33,21 @@ public:
 
     QStandardItemModel *defenition() { return defModel; }
 
+    static QString getLayoutFileName();
+
 private slots:
     void buildClicked(const QModelIndex &index);
+
+    void on_btnAdd_clicked();
 
 private:
     void setFileBuild(quint32 build);
     Ui::SelDefenitionDlg *ui;
     QStringListModel *model;
-    QString _filename;
+    quint32 buildNumber;
+    QString _filename, wdbFilename;
     ComboBoxDelegate *delegate;
+    QModelIndex currentBuild;
     QStandardItemModel *defModel;
 };
 

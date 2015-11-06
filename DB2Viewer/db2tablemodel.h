@@ -33,7 +33,9 @@ enum FldType
     FLD_INT = 'i',
     FLD_KEY = 'n',
     FLD_FLOAT = 'f',
-    FLD_STRING = 's'
+    FLD_STRING = 's',
+    FLD_DOUBLE = 'd',
+    FLD_UINT = 'u'
 };
 
 typedef struct
@@ -52,6 +54,7 @@ class DB2TableModel : public QAbstractTableModel
     friend class DB2TableModel;
 public:
     DB2TableModel(QObject *parent = 0);
+    ~DB2TableModel();
 
     bool load(const QString &filename);
 

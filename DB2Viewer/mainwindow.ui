@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>WDB Viewer</string>
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
@@ -28,6 +28,8 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionDefenitionDialog"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -43,7 +45,13 @@
     <addaction name="actionSet_filter"/>
     <addaction name="actionDisable_filter"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuFilter"/>
   </widget>
@@ -79,6 +87,11 @@
   <action name="actionDisable_filter">
    <property name="text">
     <string>Disable filter</string>
+   </property>
+  </action>
+  <action name="actionDefenitionDialog">
+   <property name="text">
+    <string>Defenition dialog</string>
    </property>
   </action>
  </widget>

@@ -37,7 +37,7 @@ private:
     DB2FilterSortModel *filter;
     QTableView *tableView;
 
-    QAction *actionCopy;
+    QAction *actionCopy, *actionRename;
 
     QAction *valueFilter;
 };

@@ -5,11 +5,14 @@
 #include <QFileInfo>
 #include <QCoreApplication>
 #include <QStringListModel>
+#include <QInputDialog>
+#include <QTextStream>
 #include "comboboxdelegate.h"
 
 DefItem ItemTypes[ITEMSCOUNT] =
 {
     {"int", 'i', sizeof(int)},
+    {"uint", 'u', sizeof(int)},
     {"key", 'n', sizeof(int)},
     {"float", 'f', sizeof(float)},
     {"string", 's', sizeof(char*)},
@@ -29,6 +32,19 @@ char FindTypeForName(const QString &name)
     return 'i';
 }
 
+QString FindTypeName(char type)
+{
+    for (int i = 0; i < ITEMSCOUNT; i++)
+    {
+        if (ItemTypes[i].type == type)
+        {
+            return ItemTypes[i].name;
+        }
+    }
+
+    return ItemTypes[0].name;
+}
+
 SelDefenitionDlg::SelDefenitionDlg(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SelDefenitionDlg)
@@ -39,6 +55,7 @@ SelDefenitionDlg::SelDefenitionDlg(QWidget *parent) :
     defModel = new QStandardItemModel(this);
     ui->tableView->setModel(defModel);
     defModel->setColumnCount(2);
+    buildNumber = 0;
 
     QStringList lst;
 
@@ -59,6 +76,7 @@ SelDefenitionDlg::~SelDefenitionDlg()
 
 void SelDefenitionDlg::setFileBuild(quint32 build)
 {
+    buildNumber = build;
     ui->label->setText(tr("File build: %1").arg(build));
 }
 
@@ -103,20 +121,26 @@ void SelDefenitionDlg::buildClicked(const QModelIndex &index)
     }
 }
 
+QString SelDefenitionDlg::getLayoutFileName()
+{
+    return QFileInfo(QCoreApplication::applicationFilePath()).absolutePath() + "/dbclayout.xml";
+}
+
 void SelDefenitionDlg::fillDefenition(const QString &filename, quint32 build)
 {
     QXmlQuery query;
-    QString dbclayout = QFileInfo(QCoreApplication::applicationFilePath()).absolutePath() + "/dbclayout.xml";
+    QString dbclayout = getLayoutFileName();
     QFile f(dbclayout);
 
     setFileBuild(build);
+    wdbFilename = QFileInfo(filename).baseName();
 
     if (f.open(QIODevice::ReadOnly))
     {
         _filename = filename;
         query.setFocus(&f);
         QString res;
-        query.setQuery(QString("/DBFilesClient/%1").arg(QFileInfo(filename).baseName()));
+        query.setQuery(QString("/DBFilesClient/%1").arg(wdbFilename));
         query.evaluateTo(&res);
 
         QDomDocument doc;
@@ -136,5 +160,53 @@ void SelDefenitionDlg::fillDefenition(const QString &filename, quint32 build)
 
             model->setStringList(builds);
         }
+    }
+}
+
+void SelDefenitionDlg::on_btnAdd_clicked()
+{
+    QFile f(getLayoutFileName());
+
+    if (!f.open(QIODevice::ReadOnly))
+        return;
+
+    QDomDocument doc("layout");
+    if (!doc.setContent(&f))
+    {
+        f.close();
+        return;
+    }
+
+    bool ok = false;
+    int build = QInputDialog::getInt(this, tr("Add new build"), tr("Enter build number: "), buildNumber, 0, 2147483647, 1, &ok);
+
+    if (ok)
+    {
+        QDomElement docElem = doc.documentElement();
+
+        QDomElement item = doc.createElement(wdbFilename);
+        item.setAttribute("build", build);
+
+        for (int i = 0; i < defModel->rowCount(); i++)
+        {
+            QDomElement fld = doc.createElement("field");
+            fld.setAttribute("type", "int");
+            fld.setAttribute("name", QString("unknown%1").arg(i + 1));
+            item.appendChild(fld);
+        }
+        docElem.appendChild(item);
+
+        f.close();
+
+        if (f.open(QIODevice::WriteOnly))
+        {
+            QTextStream s(&f);
+            doc.save(s, 2);
+            f.close();
+
+            model->insertRow(model->rowCount());
+            model->setData(model->index(model->rowCount() - 1, 0), item.attribute("build"));
+        }
+
     }
 }

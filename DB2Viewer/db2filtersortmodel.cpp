@@ -8,6 +8,7 @@ DB2FilterSortModel::DB2FilterSortModel(QObject *parent) :
     QSortFilterProxyModel(parent)
 {
     m_fFilterByValue = false;
+    m_fUseFilter = false;
     fun = NULL;
 }
 

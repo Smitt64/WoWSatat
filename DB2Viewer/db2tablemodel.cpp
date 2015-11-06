@@ -17,6 +17,11 @@ DB2TableModel::DB2TableModel(QObject *parent) :
     defDlg = new SelDefenitionDlg();
 }
 
+DB2TableModel::~DB2TableModel()
+{
+    clearDbInfo();
+}
+
 void DB2TableModel::clearDbInfo()
 {
     if (dataTable)
@@ -220,6 +225,12 @@ QVariant DB2TableModel::data(const QModelIndex &index, int role) const
         case FLD_FLOAT:
             ret = QVariant::fromValue(*reinterpret_cast<float*>(ptr));
             break;
+        case FLD_DOUBLE:
+            ret = QVariant::fromValue(*reinterpret_cast<double*>(ptr));
+            break;
+        case FLD_UINT:
+            ret = QVariant::fromValue(*reinterpret_cast<unsigned int*>(ptr));
+            break;
         case FLD_STRING:
             ret = getStringFld((quint32)(*reinterpret_cast<int*>(ptr)));
             break;
@@ -236,6 +247,7 @@ QVariant DB2TableModel::data(const QModelIndex &index, int role) const
         char *ptr = ((char*)dataTable) + index.row() * recordSize + rec.offset;
         QString tooltip;
         tooltip += QString("Integer: %1").arg(*reinterpret_cast<int*>(ptr));
+        tooltip += QString("\nUnsigned Integer: %1").arg(*reinterpret_cast<unsigned int*>(ptr));
         tooltip += QString("\nFloat: %1").arg(*reinterpret_cast<float*>(ptr));
         tooltip += QString("\nDouble: %1").arg(*reinterpret_cast<double*>(ptr));
 

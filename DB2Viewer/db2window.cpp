@@ -29,8 +29,12 @@ DB2Window::DB2Window(QWidget *parent) :
     asString = new QAction(tr("String"), this);*/
     actionCopy = new QAction(tr("Copy"), this);
     actionCopy->setShortcut(QKeySequence(QKeySequence::Copy));
+
+    actionRename = new QAction(tr("Rename"), this);
     QList<QAction*> typeAction;
+    typeAction.append(actionRename);
     typeAction.append(actionCopy);
+
     typeAction.append(new QAction(this));
     typeAction.last()->setSeparator(true);
     for (int i = 0; i < ITEMSCOUNT; i++)
